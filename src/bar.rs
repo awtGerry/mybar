@@ -1,3 +1,5 @@
+use sysinfo::{SystemExt, System};
+
 use crate::components;
 
 #[link(name = "X11")]
@@ -14,17 +16,29 @@ extern "C" {
 pub fn display_bar() {
     let display = unsafe { XOpenDisplay(0 as *const u8) };
     let root = unsafe { XDefaultRootWindow(display) };
+    let mut sys = System::new();
     loop {
         /* Components */
+        sys.refresh_cpu();
+        sys.refresh_memory();
         let date = components::date::get_date();
         let time = components::date::get_time();
+        let network = components::network::get_network();
+        let cpu = components::resources::get_cpu_usage(&mut sys);
+        let ram = components::resources::get_ram_usage(&mut sys);
 
-        let command = format!("{}  {}", date, time);
+        let command = format!("({} : {}) {}  {}  {} \0",
+                              cpu,
+                              ram,
+                              network,
+                              date,
+                              time
+                              );
         unsafe { XStoreName(display, root, command.as_ptr()) };
         unsafe { XFlush(display) };
 
         // Repetition rate
         // TODO: maybe change this later to every component having its own rate
-        std::thread::sleep(std::time::Duration::from_nanos((1e9 / 144.) as u64));
+        std::thread::sleep(std::time::Duration::from_nanos((1e9 / 4.) as u64));
     }
 }
