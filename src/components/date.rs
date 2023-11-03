@@ -18,7 +18,7 @@ pub fn get_date() -> String {
 
 pub fn get_time() -> String {
     let now: chrono::DateTime<chrono::Local> = chrono::Local::now();
-    let time = now.format("%l:%M %p").to_string();
+    let time = now.format("%l:%M:%S %p").to_string();
     let icon = String::from("");
     Component::new(icon, time)
 }

@@ -27,7 +27,7 @@ pub fn display_bar() {
         let cpu = components::resources::get_cpu_usage(&mut sys);
         let ram = components::resources::get_ram_usage(&mut sys);
 
-        let command = format!("({} : {}) {}  {}  {} \0",
+        let command = format!("{} : {}  {}   {}  {} \0",
                               cpu,
                               ram,
                               network,
@@ -39,6 +39,7 @@ pub fn display_bar() {
 
         // Repetition rate
         // TODO: maybe change this later to every component having its own rate
-        std::thread::sleep(std::time::Duration::from_nanos((1e9 / 4.) as u64));
+        // sleep for 20 seconds
+        std::thread::sleep(std::time::Duration::from_nanos((1e9 * 20.) as u64));
     }
 }

@@ -37,7 +37,16 @@ pub fn get_network() -> String {
        If the network is wireless, use a wireless icon
        If no network is connected, use a disconnected icon
     */
+    
+    #[allow(unused_assignments)]
+    let mut icon = String::new();
+    if output == "eth0" {
+        icon = "󰌗".to_string();
+    } else if output == "wlan0" {
+        icon = "".to_string();
+    } else {
+        icon = "".to_string();
+    }
 
-    let icon = String::from(" ");
-    Component::new(icon, output)
+    Component::new(icon, "".to_string())
 }

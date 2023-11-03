@@ -8,7 +8,7 @@ pub fn get_cpu_usage(sys: &mut sysinfo::System) -> String {
     for cpu in sys.cpus() {
         cpu_usage += cpu.cpu_usage() as u16;
     }
-    /* Then divide by the number of cores */
+    /* Then divide by the number of cores to get the average */
     cpu_usage /= sys.cpus().len() as u16;
 
     let icon = String::from(" ");
