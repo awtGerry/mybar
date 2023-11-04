@@ -16,20 +16,18 @@ extern "C" {
 pub fn display_bar() {
     let display = unsafe { XOpenDisplay(0 as *const u8) };
     let root = unsafe { XDefaultRootWindow(display) };
-    let mut sys = System::new();
+    // let mut sys = System::new();
     loop {
         /* Components */
-        sys.refresh_cpu();
-        sys.refresh_memory();
         let date = components::date::get_date();
         let time = components::date::get_time();
         let network = components::network::get_network();
-        let cpu = components::resources::get_cpu_usage(&mut sys);
-        let ram = components::resources::get_ram_usage(&mut sys);
 
-        let command = format!("{} : {}  {}   {}  {} \0",
-                              cpu,
-                              ram,
+        // On pause until I can figure out how tf get this to work.
+        // let cpu = components::resources::get_cpu_usage(&mut sys);
+        // let ram = components::resources::get_ram_usage(&mut sys);
+
+        let command = format!("{}   {}  {} \0",
                               network,
                               date,
                               time

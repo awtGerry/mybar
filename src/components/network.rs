@@ -7,7 +7,7 @@ use super::component::Component;
 
 /* TODO:
    Implement this using rust sysinfo for network
-   right now it is just go for what i already know
+   right now i'll just go for what i already know
 */
 
 pub fn get_network() -> String {

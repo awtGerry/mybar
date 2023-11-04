@@ -9,7 +9,9 @@ pub fn get_cpu_usage(sys: &mut sysinfo::System) -> String {
         cpu_usage += cpu.cpu_usage() as u16;
     }
     /* Then divide by the number of cores to get the average */
-    cpu_usage /= sys.cpus().len() as u16;
+    if sys.cpus().len() > 0 {
+        cpu_usage /= sys.cpus().len() as u16;
+    }
 
     let icon = String::from(" ");
     let cpu_usage = format!("{}%", cpu_usage);
@@ -17,11 +19,10 @@ pub fn get_cpu_usage(sys: &mut sysinfo::System) -> String {
 }
 
 pub fn get_ram_usage(sys: &mut sysinfo::System) -> String {
-    let total_ram = sys.total_memory();
     let used_ram = sys.used_memory();
-    /* Calculate the percentage of ram used */
-    let ram_usage = (used_ram as f32 / total_ram as f32 * 100.) as u16;
-    let ram_usage = format!("{}%", ram_usage);
+    // convert to GB
+    let used_ram = used_ram as f32 / 1024.0 / 1024.0 / 1024.0;
+    let used_ram = format!("{:.2} GB", used_ram);
     let icon = String::from(" ");
-    Component::new(icon, ram_usage)
+    Component::new(icon, used_ram)
 }
