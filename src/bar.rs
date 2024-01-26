@@ -1,4 +1,4 @@
-// use sysinfo::{SystemExt, System};
+use sysinfo::System;
 
 use crate::components;
 
@@ -16,7 +16,8 @@ extern "C" {
 pub fn display_bar() {
     let display = unsafe { XOpenDisplay(0 as *const u8) };
     let root = unsafe { XDefaultRootWindow(display) };
-    // let mut sys = System::new();
+    let mut sys = System::new();
+    let spaces = String::from("    ");
     loop {
         /* Components */
         let date = components::date::get_date();
@@ -24,10 +25,12 @@ pub fn display_bar() {
         let network = components::network::get_network();
 
         // On pause until I can figure out how tf get this to work.
-        // let cpu = components::resources::get_cpu_usage(&mut sys);
-        // let ram = components::resources::get_ram_usage(&mut sys);
+        let cpu = components::resources::get_cpu_usage(&mut sys);
+        let ram = components::resources::get_ram_usage(&mut sys);
 
-        let command = format!("{}   {}  {} \0",
+        let command = format!("{spaces}{}{spaces}{}{spaces}{}{spaces}{}{spaces}{} \0",
+                              cpu,
+                              ram,
                               network,
                               date,
                               time

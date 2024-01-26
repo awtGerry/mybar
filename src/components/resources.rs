@@ -1,4 +1,5 @@
-use sysinfo::{SystemExt, CpuExt};
+// use sysinfo::{SystemExt, CpuExt};
+// use sysinfo::System
 
 use super::component::Component;
 
@@ -19,10 +20,15 @@ pub fn get_cpu_usage(sys: &mut sysinfo::System) -> String {
 }
 
 pub fn get_ram_usage(sys: &mut sysinfo::System) -> String {
-    let used_ram = sys.used_memory();
-    // convert to GB
-    let used_ram = used_ram as f32 / 1024.0 / 1024.0 / 1024.0;
-    let used_ram = format!("{:.2} GB", used_ram);
+    // Get free memory in bytes
+    // let available_ram = sys.free_memory();
+    // Get total memory in bytes
+    let total_ram = sys.total_memory();
+
+    // Calculate percentage of used memory
+    // let ram_usage = (total_ram - available_ram) as f32 / total_ram as f32 * 100.0;
+    // let ram_usage = format!("{:.1}%", ram_usage);
+
     let icon = String::from(" ");
-    Component::new(icon, used_ram)
+    Component::new(icon, total_ram.to_string())
 }
