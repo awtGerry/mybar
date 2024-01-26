@@ -1,14 +1,3 @@
-// fn battery_status() -> Result<(), battery::Error> {
-//     let manager = battery::Manager::new()?;
-//     for (idx, maybe_battery) in manager.batteries()?.enumerate()
-//     {
-//         let battery = maybe_battery?;
-//         println!("Battery #{}:", idx);
-//         println!("  state: {:?}", battery.state());
-//     }
-//     Ok(())
-// }
-
 fn battery_status() -> battery::Result<String> {
     let manager = battery::Manager::new()?;
     let mut battery = match manager.batteries()?.next() {

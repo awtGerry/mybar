@@ -6,6 +6,6 @@ pub struct Component {
 
 impl Component {
     pub fn new(icon: String, command: String) -> String {
-        format!("{}{}", icon, command)
+        format!("{}  {}", icon, command)
     }
 }

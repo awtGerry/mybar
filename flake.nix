@@ -19,6 +19,7 @@
           pkg-config
           xorg.libX11
 
+          rust-analyzer
           rustup
           rustc
           cargo
