@@ -14,7 +14,7 @@ pub fn get_network() -> String {
                 iname = i.name.clone();
                 // Check if iname is wifi or ethernet
                 if iname.contains("enp") || iname.contains("eth") {
-                    icon = " ".to_string();
+                    icon = "󰈀 ".to_string();
                 } else {
                     icon = "󰤨 ".to_string();
                 }
@@ -24,5 +24,5 @@ pub fn get_network() -> String {
             }
         }
     }
-    Component::new(icon, iname)
+    Component::new(icon, "".to_string())
 }
