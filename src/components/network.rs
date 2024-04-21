@@ -12,17 +12,18 @@ pub fn get_network() -> String {
         if !i.is_loopback() {
             if i.is_running() {
                 iname = i.name.clone();
+                // println!("Interface: {}", iname);
                 // Check if iname is wifi or ethernet
                 if iname.contains("enp") || iname.contains("eth") {
-                    icon = "󰈀 ".to_string();
-                } else {
-                    icon = "󰤨 ".to_string();
+                    icon = "󰈀".to_string();
+                } else if iname.contains("wlp") || iname.contains("wlan") {
+                    icon = "󰤨".to_string();
                 }
             } else {
-                iname = "".to_string();
-                icon = "󰤭 ".to_string();
+                iname = "nc".to_string();
+                icon = "󰤭".to_string();
             }
         }
     }
-    Component::new(icon, "".to_string())
+    Component::new(icon, iname)
 }

@@ -17,7 +17,7 @@ pub fn display_bar() {
     let display = unsafe { XOpenDisplay(0 as *const u8) };
     let root = unsafe { XDefaultRootWindow(display) };
     let mut sys = System::new();
-    let sp = String::from("    ");
+    let sp = String::from(" ");
     loop {
         /* Components */
         let date = components::date::get_date();
@@ -28,9 +28,12 @@ pub fn display_bar() {
         let cpu = components::resources::get_cpu_usage(&mut sys);
         let ram = components::resources::get_ram_usage(&mut sys);
 
-        let command = format!("{}{sp}{}{sp}{}{sp}{}{sp}{} \0",
+        let battery = components::battery::get_charge();
+
+        let command = format!("{}{sp}{}{sp}{}{sp}{}{sp}{}{sp}{} \0",
                               cpu,
                               ram,
+                              battery,
                               network,
                               date,
                               time

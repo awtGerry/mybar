@@ -37,9 +37,9 @@
             xorg.libX11
 
             rust-analyzer
-            rustup
-            rustc
-            cargo
+            # rustup
+            # rustc
+            # cargo
             gcc
             glib
             glibc

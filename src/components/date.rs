@@ -12,7 +12,7 @@ use super::component::Component;
 pub fn get_date() -> String {
     let now = chrono::Local::now();
     let date = now.format("%A %d").to_string();
-    let icon = String::from(" ");
+    let icon = String::from("");
     Component::new(icon, date)
 }
 
@@ -20,5 +20,5 @@ pub fn get_time() -> String {
     let now: chrono::DateTime<chrono::Local> = chrono::Local::now();
     let time = now.format("%H:%M").to_string();
     let icon = String::from("");
-    Component::new(icon, time)
+    Component::new(time, icon)
 }
