@@ -31,7 +31,6 @@ pub fn get_charge() -> String {
 }
 
 fn change_icon(charge: u32) -> String {
-    println!("{}", charge);
     let icon = match charge {
         0..=20 => "".to_string(),
         21..=40 => "".to_string(),
