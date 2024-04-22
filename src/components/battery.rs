@@ -13,8 +13,8 @@ pub fn get_charge() -> String {
                 battery::State::Discharging => change_icon((battery.state_of_charge().value * 100.0) as u32),
                 battery::State::Empty => "".to_string(),
                 battery::State::Full => "".to_string(),
-                battery::State::Unknown => "󰂃".to_string(),
-                battery::State::__Nonexhaustive => "󰂃".to_string(),
+                battery::State::Unknown => "".to_string(),
+                battery::State::__Nonexhaustive => "".to_string(),
             };
             charge = format!("{:.0}%", battery.state_of_charge().value * 100.0);
         }
@@ -37,7 +37,7 @@ fn change_icon(charge: u32) -> String {
         41..=60 => "".to_string(),
         61..=80 => "".to_string(),
         81..=100 => "".to_string(),
-        _ => "󰂃".to_string(),
+        _ => "".to_string(),
     };
     icon
 }

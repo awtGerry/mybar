@@ -15,13 +15,13 @@ pub fn get_network() -> String {
                 // println!("Interface: {}", iname);
                 // Check if iname is wifi or ethernet
                 if iname.contains("enp") || iname.contains("eth") {
-                    icon = "󰈀".to_string();
+                    icon = "".to_string();
                 } else if iname.contains("wlp") || iname.contains("wlan") {
-                    icon = "󰤨".to_string();
+                    icon = "".to_string();
                 }
             } else {
                 iname = "nc".to_string();
-                icon = "󰤭".to_string();
+                icon = "".to_string();
             }
         }
     }

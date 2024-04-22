@@ -28,11 +28,13 @@ pub fn display_bar() {
         let cpu = components::resources::get_cpu_usage(&mut sys);
         let ram = components::resources::get_ram_usage(&mut sys);
 
+        let backlight = components::backlight::get_light();
         let battery = components::battery::get_charge();
 
-        let command = format!("{}{sp}{}{sp}{}{sp}{}{sp}{}{sp}{} \0",
+        let command = format!("{}{sp}{}{sp}{}{sp}{}{sp}{}{sp}{}{sp}{} \0",
                               cpu,
                               ram,
+                              backlight,
                               battery,
                               network,
                               date,
