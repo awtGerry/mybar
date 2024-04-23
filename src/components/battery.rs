@@ -16,7 +16,7 @@ pub fn get_charge() -> String {
                 battery::State::Unknown => "".to_string(),
                 battery::State::__Nonexhaustive => "".to_string(),
             };
-            charge = format!("{:.0}%", battery.state_of_charge().value * 100.0);
+            charge = format!("{:.0}% ", battery.state_of_charge().value * 100.0);
         }
         Some(Err(_e)) => {
             icon = "".to_string();
